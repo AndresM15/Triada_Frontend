@@ -1,0 +1,291 @@
+/* ─── Page ─── */
+.confirm-page {
+    background-color: #f0f5f0;
+    min-height: calc(100vh - 65px);
+    padding: 50px 5% 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+}
+
+/* ─── Finca Summary Card ─── */
+.finca-card-confirm {
+    display: flex;
+    gap: 24px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 680px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.finca-card-img {
+    width: 200px;
+    height: 150px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.finca-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.finca-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #16a34a;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.finca-card-info h2 {
+    margin: 4px 0 2px 0;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--texto-oscuro);
+}
+
+.finca-loc {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.finca-meta-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 8px;
+}
+
+.finca-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.meta-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #9ca3af;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.meta-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--texto-oscuro);
+}
+
+/* ─── Processing Card ─── */
+.processing-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 48px 40px 36px;
+    width: 100%;
+    max-width: 680px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+/* Spinner Icon */
+.processing-icon {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner-ring {
+    position: absolute;
+    inset: 0;
+    border: 3px solid #dcfce7;
+    border-top-color: var(--verde-bosque);
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.send-icon {
+    position: relative;
+    z-index: 1;
+}
+
+.processing-card h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--texto-oscuro);
+    margin: 0 0 12px 0;
+}
+
+.processing-desc {
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 460px;
+    margin: 0 auto 30px;
+}
+
+/* Progress Bar */
+.progress-section {
+    max-width: 340px;
+    margin: 0 auto 28px;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.progress-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--verde-bosque);
+    letter-spacing: 0.5px;
+}
+
+.progress-percent {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 65%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--verde-bosque), #34d399);
+    border-radius: 999px;
+    animation: pulse-bar 2s ease-in-out infinite;
+}
+
+@keyframes pulse-bar {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.75; }
+}
+
+/* Cancel Button */
+.btn-cancel {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.2s;
+}
+
+.btn-cancel:hover {
+    color: #ef4444;
+}
+
+/* ─── Trust Badges ─── */
+.trust-badges {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 680px;
+}
+
+.trust-badge {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.trust-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trust-icon.green {
+    background-color: #dcfce7;
+    color: var(--verde-bosque);
+}
+
+.trust-badge strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--texto-oscuro);
+    margin-bottom: 4px;
+}
+
+.trust-badge p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 700px) {
+    .finca-card-confirm {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .finca-card-img {
+        width: 100%;
+        height: 180px;
+    }
+
+    .finca-loc {
+        justify-content: center;
+    }
+
+    .finca-meta-row {
+        justify-content: center;
+    }
+
+    .trust-badges {
+        grid-template-columns: 1fr;
+    }
+}

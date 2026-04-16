@@ -1,0 +1,70 @@
+<div class="hero-wrapper">
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Experimenta el alma del Eje Cafetero</h1>
+            <p>Descubre fincas y paisajes inolvidables en el corazón de Colombia</p>
+            <div class="search-bar">
+                <input type="text" placeholder="¿A dónde quieres ir? Ej: Santagueda, Salento, Filandia...">
+                <button class="btn-search">Buscar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="categories-bar">
+    <div class="categories-container">
+        <div *ngFor="let category of categories" class="category-item">
+            <img [src]="category.icon" [alt]="category.label" class="category-icon">
+            <span class="category-label">{{ category.label }}</span>
+        </div>
+    </div>
+</div>
+
+<section class="catalog-container">
+    <header class="catalog-header">
+        <h2>Fincas Destacadas</h2>
+        <p>Los mejores lugares para descansar este fin de semana</p>
+    </header>
+
+    <div class="finca-grid">
+        <div *ngFor="let finca of fincas" class="finca-card" [routerLink]="['/catalog/details', finca.id]">
+            <div class="image-placeholder">
+                <img *ngIf="finca.imagenes && finca.imagenes.length > 0 && finca.imagenes[0]" [src]="finca.imagenes[0]"
+                    [alt]="finca.nombre" class="finca-img">
+                <span *ngIf="finca.superanfitrion" class="badge-superanfitrion">Superanfitrión</span>
+                <button class="btn-favorite">
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
+                        focusable="false"
+                        style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: white; stroke-width: 2; overflow: visible;">
+                        <path
+                            d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="card-content">
+                <div class="card-header-row">
+                    <h3>{{ finca.nombre }}</h3>
+                    <span class="rating">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                            role="presentation" focusable="false"
+                            style="display: block; height: 12px; width: 12px; fill: currentColor;">
+                            <path
+                                d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                        {{ finca.puntuacion }}
+                    </span>
+                </div>
+                <p class="location">{{ finca.ubicacion }}</p>
+                <p class="details">{{ finca.servicios.join(' • ') }}</p>
+
+                <div class="card-price">
+                    <span class="price">${{ finca.precioPorNoche | number:'1.0-0' }} COP</span> <span
+                        class="price-suffix"> por noche</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

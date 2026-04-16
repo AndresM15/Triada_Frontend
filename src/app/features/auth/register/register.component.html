@@ -1,0 +1,136 @@
+<div class="register-page">
+  <div class="register-container">
+
+    <div class="register-header">
+      <h1>Crear Cuenta</h1>
+      <p class="register-subtitle">Elige tu perfil y únete a la comunidad cafetera.</p>
+    </div>
+
+    <div class="role-cards">
+      <div class="role-card" [class.active]="selectedRole === 'cliente'" (click)="selectRole('cliente')">
+        <div class="role-img-wrapper">
+          <img src="assets/img/inicio de sesion/img_cliente.png" alt="Soy Cliente" class="role-img">
+          <div class="role-icon">
+            <img src="assets/img/inicio de sesion/icon_1.png" alt="Icono cliente">
+          </div>
+          <div class="role-check" *ngIf="selectedRole === 'cliente'">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2.5">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="role-info">
+          <h3 [class.active-title]="selectedRole === 'cliente'">Soy Cliente</h3>
+          <p>Quiero alquilar una finca para mis vacaciones o eventos.</p>
+        </div>
+      </div>
+
+      <div class="role-card" [class.active]="selectedRole === 'propietario'" (click)="selectRole('propietario')">
+        <div class="role-img-wrapper">
+          <img src="assets/img/inicio de sesion/img_propi.png" alt="Soy Propietario" class="role-img"
+            [class.grayscale]="selectedRole !== 'propietario'">
+          <div class="role-icon">
+            <img src="assets/img/inicio de sesion/icon_2.png" alt="Icono propietario">
+          </div>
+          <div class="role-check" *ngIf="selectedRole === 'propietario'">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2.5">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="role-info">
+          <h3 [class.active-title]="selectedRole === 'propietario'">Soy Propietario</h3>
+          <p>Quiero rentar mi finca y generar ingresos extras.</p>
+        </div>
+      </div>
+    </div>
+
+    <form class="register-form">
+      <div class="form-row-2col">
+        <div class="input-group">
+          <label for="reg-name">Nombre Completo</label>
+          <div class="input-with-icon">
+            <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+              fill="none">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <input id="reg-name" type="text" placeholder="Ej. Juan Pérez" class="form-input">
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="reg-phone">Teléfono</label>
+          <div class="input-with-icon">
+            <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+              fill="none">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z">
+              </path>
+            </svg>
+            <input id="reg-phone" type="tel" placeholder="+57 300 123 4567" class="form-input">
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="reg-email">Correo Electrónico</label>
+        <div class="input-with-icon">
+          <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+            fill="none">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <input id="reg-email" type="email" placeholder="juan@ejemplo.com" class="form-input">
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="reg-pass">Contraseña</label>
+        <div class="input-with-icon">
+          <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+            fill="none">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <input id="reg-pass" [type]="showPassword ? 'text' : 'password'" placeholder="••••••••" class="form-input">
+          <button type="button" class="toggle-pass" (click)="togglePassword()">
+            <svg *ngIf="!showPassword" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+              fill="none">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg *ngIf="showPassword" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+              fill="none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"></path>
+              <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+        <span class="input-hint">Mínimo 8 caracteres</span>
+      </div>
+
+      <div class="terms-row">
+        <input type="checkbox" id="terms" class="terms-checkbox">
+        <label for="terms" class="terms-label">
+          Acepto los <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a> de Triada
+          Cafetera.
+        </label>
+      </div>
+
+      <button type="submit" class="btn-create-account">
+        Crear Cuenta
+        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </form>
+
+    <p class="login-cta">
+      ¿Ya tienes una cuenta?
+      <a routerLink="/auth/login" class="login-link">Inicia Sesión aquí</a>
+    </p>
+
+  </div>
+</div>

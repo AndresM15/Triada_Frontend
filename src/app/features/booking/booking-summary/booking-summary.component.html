@@ -1,0 +1,146 @@
+<section class="booking-page">
+  <div class="booking-layout">
+
+    <!-- ═══ LEFT COLUMN ═══ -->
+    <div class="booking-left">
+
+      <!-- Back Link -->
+      <a [routerLink]="['/catalog/details', fincaId]" class="back-link">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Volver a la finca
+      </a>
+
+      <h1 class="page-title">Solicitud de Reserva</h1>
+
+      <!-- Tu viaje Card -->
+      <div class="info-card">
+        <h2>Tu viaje</h2>
+
+        <div class="trip-row">
+          <div class="trip-detail">
+            <span class="trip-label">Fechas</span>
+            <span class="trip-value">15 - 20 de Diciembre</span>
+          </div>
+          <button class="btn-edit">Editar</button>
+        </div>
+
+        <div class="trip-divider"></div>
+
+        <div class="trip-row">
+          <div class="trip-detail">
+            <span class="trip-label">Huéspedes</span>
+            <span class="trip-value">4 Adultos, 1 Niño</span>
+          </div>
+          <button class="btn-edit">Editar</button>
+        </div>
+      </div>
+
+      <!-- Mensaje al propietario Card -->
+      <div class="info-card message-card">
+        <div class="message-header">
+          <div>
+            <h2>Mensaje al propietario</h2>
+            <p class="message-subtitle">Comparte un poco sobre ti y el motivo de tu viaje.</p>
+          </div>
+          <div class="owner-avatar">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+        </div>
+        <textarea class="message-textarea" placeholder="Hola Carlos, me encanta tu finca..." [(ngModel)]="ownerMessage" rows="4"></textarea>
+      </div>
+
+      <!-- Reglas de la casa Card -->
+      <div class="info-card">
+        <h2>Reglas de la casa</h2>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>Check-in: 15:00</span>
+          </div>
+          <div class="rule-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Check-out: 11:00</span>
+          </div>
+          <div class="rule-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <span>No fumar</span>
+          </div>
+          <div class="rule-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <span>No fiestas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ RIGHT COLUMN ═══ -->
+    <div class="booking-right">
+      <div class="sticky-sidebar">
+
+        <!-- Finca Info Card -->
+        <div class="finca-summary-card">
+          <div class="finca-mini">
+            <div class="finca-mini-img">
+              <img src="assets/img/finca/finca_1.png" alt="Finca">
+            </div>
+            <div class="finca-mini-info">
+              <span class="finca-tag">HOSPEDAJE RURAL</span>
+              <h3>Finca El Paraíso Cafetero</h3>
+              <p class="finca-mini-loc">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Quindío, Colombia
+              </p>
+              <p class="finca-mini-rating">
+                <svg viewBox="0 0 32 32" width="12" height="12" fill="#fbbf24"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
+                <strong>4.92</strong> (128 reseñas)
+              </p>
+            </div>
+          </div>
+
+          <!-- Price Breakdown -->
+          <div class="price-section">
+            <h3>Detalles del precio</h3>
+            <div class="price-row">
+              <span>${{ pricePerNight | number:'1.0-0' }} COP x {{ nights }} noches</span>
+              <span>${{ nightsTotal | number:'1.0-0' }} COP</span>
+            </div>
+            <div class="price-row">
+              <span>Tarifa de limpieza</span>
+              <span>${{ cleaningFee | number:'1.0-0' }} COP</span>
+            </div>
+            <div class="price-row">
+              <span>Tarifa de servicio Triada</span>
+              <span>${{ serviceFee | number:'1.0-0' }} COP</span>
+            </div>
+            <div class="price-row discount">
+              <span>Descuento estadía larga</span>
+              <span>-${{ longStayDiscount | number:'1.0-0' }} COP</span>
+            </div>
+
+            <div class="price-total">
+              <span class="total-label">Total (COP)</span>
+              <span class="total-value">${{ total | number:'1.0-0' }}</span>
+            </div>
+          </div>
+
+          <!-- Secure Badge -->
+          <div class="secure-badge">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--verde-bosque)" stroke-width="2" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10" stroke="var(--verde-bosque)"></polyline></svg>
+            <div>
+              <strong>Reserva segura</strong>
+              <p>Tu pago está protegido hasta que llegues a la finca.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="btn-submit-booking" (click)="submitBooking()">
+          Enviar Solicitud
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+        <p class="no-charge-note">No se te cobrará nada todavía</p>
+      </div>
+    </div>
+
+  </div>
+</section>

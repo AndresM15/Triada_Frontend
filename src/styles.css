@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --verde-bosque: #2D5A27;
+    --terracota: #A67B5B;
+    --blanco-crema: #FDFBF7;
+    --azul-cerceta: #006D77;
+    --texto-oscuro: #1A1A1A;
+}
+
+body {
+    background-color: var(--blanco-crema);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--texto-oscuro);
+}

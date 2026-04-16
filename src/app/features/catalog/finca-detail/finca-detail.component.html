@@ -1,0 +1,207 @@
+<section class="finca-detail-wrapper" *ngIf="finca">
+  <!-- Breadcrumbs -->
+  <div class="breadcrumbs">
+    <a routerLink="/">Inicio</a> <span class="separator">›</span>
+    <a routerLink="/catalog">Fincas</a> <span class="separator">›</span>
+    <span class="current">{{ finca.nombre }}</span>
+  </div>
+
+  <!-- Header: Title and Actions -->
+  <div class="finca-header-section">
+    <div class="finca-title-info">
+      <h1>{{ finca.nombre }}</h1>
+      <p class="finca-location">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        {{ finca.ubicacion }}
+      </p>
+    </div>
+    
+    <div class="finca-actions">
+      <button class="btn-action">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        Compartir
+      </button>
+      <button class="btn-action">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        Guardar
+      </button>
+    </div>
+  </div>
+
+  <!-- Photo Gallery Grid -->
+  <div class="gallery-grid">
+    <div class="gallery-main">
+      <img [src]="galleryImages[0]" alt="Foto principal de la finca" class="gallery-img">
+    </div>
+    <div class="gallery-sub">
+      <div class="gallery-item">
+        <img [src]="galleryImages[1]" alt="Foto de la finca" class="gallery-img">
+      </div>
+      <div class="gallery-item rounded-tr">
+        <img [src]="galleryImages[2]" alt="Foto de la finca" class="gallery-img">
+      </div>
+      <div class="gallery-item">
+        <img [src]="galleryImages[3]" alt="Foto de la finca" class="gallery-img">
+      </div>
+      <div class="gallery-item rounded-br">
+        <img [src]="galleryImages[4]" alt="Foto de la finca" class="gallery-img">
+      </div>
+    </div>
+  </div>
+  <!-- Main Content Layout -->
+  <div class="finca-body-content">
+    
+    <!-- Left Pane: Details & Amenities -->
+    <div class="finca-info-pane">
+      <div class="quick-info-row">
+        <div class="quick-item" *ngFor="let info of fincaDetails.quickInfo">
+          <div class="qi-icon" [innerHTML]="info.icon"></div>
+          <div class="qi-text">
+            <span class="qi-title">{{ info.title }}</span>
+            <span class="qi-val">{{ info.value }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <h2>Sobre este lugar</h2>
+        <p>{{ fincaDetails.aboutTextP1 }}</p>
+        <p>{{ fincaDetails.aboutTextP2 }}</p>
+      </div>
+
+      <div class="amenities-section">
+        <h2>Lo que ofrece este lugar</h2>
+        <div class="amenities-grid">
+          <div class="amenity-item" *ngFor="let am of fincaDetails.amenities">
+            <span class="am-icon" [innerHTML]="am.icon"></span>
+            <span class="am-name">{{ am.name }}</span>
+          </div>
+        </div>
+        <button class="btn-outline">Mostrar las 24 amenidades</button>
+      </div>
+
+      <!-- Nearby Experiences Section -->
+      <div class="nearby-experiences-section">
+        <h2>Experiencias Cercanas</h2>
+        <div class="nearby-exp-grid">
+          <div class="nearby-exp-card" *ngFor="let exp of nearbyExperiences">
+            <div class="n-exp-img-wrapper">
+              <img [src]="exp.image" alt="{{ exp.title }}" class="n-exp-img">
+            </div>
+            <div class="n-exp-content">
+              <div class="n-exp-rating">
+                <svg viewBox="0 0 32 32" width="12" height="12" fill="#fbbf24"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
+                <strong>{{ exp.rating }}</strong> <span class="n-exp-reviews">({{ exp.reviews }})</span>
+              </div>
+              <h3>{{ exp.title }}</h3>
+              <p class="n-exp-desc">{{ exp.description }}</p>
+              <p class="n-exp-price"><strong>{{ exp.priceText }}</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location Map Section -->
+      <div class="location-section">
+        <h2>Ubicación</h2>
+        <div class="location-map-wrapper">
+          <img src="assets/img/experience/santagueda_mapa.png" alt="Mapa de la finca" class="map-placeholder-img">
+          <button class="btn-map-overlay">Ver en Google Maps</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Pane: Booking Widget -->
+    <div class="finca-booking-pane">
+      <div class="booking-widget">
+        <div class="bw-header">
+          <div class="bw-price">
+            <strong>${{ fincaDetails.pricePerNight | number:'1.0-0' }}</strong> COP <span class="bw-night">/ noche</span>
+          </div>
+          <div class="bw-reviews">
+            <svg viewBox="0 0 32 32" width="12" height="12" fill="#fbbf24"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
+            <strong>{{ fincaDetails.rating }}</strong> <span class="bw-rev-count">{{ fincaDetails.reviews }} reseñas</span>
+          </div>
+        </div>
+
+        <div class="bw-date-picker">
+          <div class="dp-inputs">
+            <div class="dp-checkin">
+              <span class="dp-label">LLEGADA</span>
+              <span class="dp-val">14 Nov 2023</span>
+            </div>
+            <div class="dp-checkout">
+              <span class="dp-label">SALIDA</span>
+              <span class="dp-val">19 Nov 2023</span>
+            </div>
+          </div>
+          
+          <!-- Mocked Calendar -->
+          <div class="dp-calendar">
+            <div class="cal-days">
+              <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+            </div>
+            <div class="cal-nums">
+              <span></span><span></span><span class="muted">01</span><span class="muted">02</span><span class="muted">03</span><span class="muted">04</span><span class="muted">05</span>
+              <span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span>
+              <span>13</span><span class="sel-start">14</span><span class="in-range">15</span><span class="in-range">16</span><span class="in-range">17</span><span class="in-range">18</span><span class="sel-end">19</span>
+            </div>
+            <div class="cal-legend">
+              <span class="leg-item"><span class="dot free"></span> Libre / Sel.</span>
+              <span class="leg-item"><span class="dot occ"></span> Ocupado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bw-guests">
+          <span class="dp-label">HUÉSPEDES</span>
+          <div class="dp-val-dropdown">
+            4 huéspedes
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+        </div>
+
+        <button class="btn-reserve-large" (click)="goToBooking()">Reservar ahora</button>
+        <p class="bw-no-charge">No se te cobrará nada todavía</p>
+
+        <div class="bw-breakdown">
+          <div class="bd-row">
+            <span class="bd-label underline">${{ fincaDetails.pricePerNight | number:'1.0-0' }} COP x {{ bookingBreakdown.nightsCount }} noches</span>
+            <span class="bd-val">${{ bookingBreakdown.nightsTotal | number:'1.0-0' }} COP</span>
+          </div>
+          <div class="bd-row">
+            <span class="bd-label underline">Tarifa de limpieza</span>
+            <span class="bd-val">${{ bookingBreakdown.cleaningFee | number:'1.0-0' }} COP</span>
+          </div>
+          <div class="bd-row">
+            <span class="bd-label underline">Tarifa de servicio</span>
+            <span class="bd-val">${{ bookingBreakdown.serviceFee | number:'1.0-0' }} COP</span>
+          </div>
+        </div>
+        
+        <div class="bw-total">
+          <span class="tot-label">Total</span>
+          <span class="tot-val">${{ bookingBreakdown.total | number:'1.0-0' }} COP</span>
+        </div>
+      </div>
+
+      <!-- Hook Comment Box -->
+      <div class="hook-box">
+        <div class="hook-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M6 3h12l4 6-10 12L2 9l4-6z"></path></svg>
+        </div>
+        <div class="hook-content">
+          <h4>Este es un hallazgo único</h4>
+          <p>La Finca Villa Café suele estar reservada por completo.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Fallback while loading or if not found -->
+<div *ngIf="!finca" class="loading-state">
+  <p>Cargando información de la finca...</p>
+</div>
