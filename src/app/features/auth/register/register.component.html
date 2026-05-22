@@ -7,7 +7,13 @@
     </div>
 
     <div class="role-cards">
-      <div class="role-card" [class.active]="selectedRole === 'cliente'" (click)="selectRole('cliente')">
+      <div
+        class="role-card"
+        [class.active]="selectedRole === 'cliente'"
+        (click)="selectRole('cliente')"
+        title="Seleccionar rol Cliente"
+        [appTooltip]="'Seleccionar rol Cliente'"
+      >
         <div class="role-img-wrapper">
           <img src="assets/img/inicio de sesion/img_cliente.png" alt="Soy Cliente" class="role-img">
           <div class="role-icon">
@@ -25,7 +31,13 @@
         </div>
       </div>
 
-      <div class="role-card" [class.active]="selectedRole === 'propietario'" (click)="selectRole('propietario')">
+      <div
+        class="role-card"
+        [class.active]="selectedRole === 'propietario'"
+        (click)="selectRole('propietario')"
+        title="Seleccionar rol Propietario"
+        [appTooltip]="'Seleccionar rol Propietario'"
+      >
         <div class="role-img-wrapper">
           <img src="assets/img/inicio de sesion/img_propi.png" alt="Soy Propietario" class="role-img"
             [class.grayscale]="selectedRole !== 'propietario'">
@@ -55,7 +67,14 @@
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <input id="reg-name" type="text" placeholder="Ej. Juan Pérez" class="form-input">
+            <input
+              id="reg-name"
+              type="text"
+              placeholder="Ej. Juan Pérez"
+              class="form-input"
+              title="Ingresa tu nombre completo"
+              [appTooltip]="'Ingresa tu nombre completo'"
+            >
           </div>
         </div>
         <div class="input-group">
@@ -67,7 +86,14 @@
                 d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z">
               </path>
             </svg>
-            <input id="reg-phone" type="tel" placeholder="+57 300 123 4567" class="form-input">
+            <input
+              id="reg-phone"
+              type="tel"
+              placeholder="+57 300 123 4567"
+              class="form-input"
+              title="Ingresa tu teléfono"
+              [appTooltip]="'Ingresa tu teléfono'"
+            >
           </div>
         </div>
       </div>
@@ -80,7 +106,14 @@
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
-          <input id="reg-email" type="email" placeholder="juan@ejemplo.com" class="form-input">
+          <input
+            id="reg-email"
+            type="email"
+            placeholder="juan@ejemplo.com"
+            class="form-input"
+            title="Ingresa tu correo electrónico"
+            [appTooltip]="'Ingresa tu correo electrónico'"
+          >
         </div>
       </div>
 
@@ -92,8 +125,21 @@
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
-          <input id="reg-pass" [type]="showPassword ? 'text' : 'password'" placeholder="••••••••" class="form-input">
-          <button type="button" class="toggle-pass" (click)="togglePassword()">
+          <input
+            id="reg-pass"
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="••••••••"
+            class="form-input"
+            title="Crea una contraseña"
+            [appTooltip]="'Crea una contraseña'"
+          >
+          <button
+            type="button"
+            class="toggle-pass"
+            (click)="togglePassword()"
+            title="Mostrar u ocultar contraseña"
+            [appTooltip]="'Mostrar u ocultar contraseña'"
+          >
             <svg *ngIf="!showPassword" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
               fill="none">
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path>
@@ -111,14 +157,29 @@
       </div>
 
       <div class="terms-row">
-        <input type="checkbox" id="terms" class="terms-checkbox">
+        <input
+          type="checkbox"
+          id="terms"
+          class="terms-checkbox"
+          title="Aceptar términos y privacidad"
+          [appTooltip]="'Aceptar términos y privacidad'"
+        >
         <label for="terms" class="terms-label">
-          Acepto los <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a> de Triada
+          Acepto los
+          <a href="#" title="Ver términos y condiciones" [appTooltip]="'Ver términos y condiciones'">Términos y Condiciones</a>
+          y la
+          <a href="#" title="Ver política de privacidad" [appTooltip]="'Ver política de privacidad'">Política de Privacidad</a>
+          de Triada
           Cafetera.
         </label>
       </div>
 
-      <button type="submit" class="btn-create-account">
+      <button
+        type="submit"
+        class="btn-create-account"
+        title="Crear cuenta"
+        [appTooltip]="'Crear cuenta'"
+      >
         Crear Cuenta
         <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none">
           <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -129,7 +190,12 @@
 
     <p class="login-cta">
       ¿Ya tienes una cuenta?
-      <a routerLink="/auth/login" class="login-link">Inicia Sesión aquí</a>
+      <a
+        routerLink="/auth/login"
+        class="login-link"
+        title="Ir a iniciar sesión"
+        [appTooltip]="'Ir a iniciar sesión'"
+      >Inicia Sesión aquí</a>
     </p>
 
   </div>

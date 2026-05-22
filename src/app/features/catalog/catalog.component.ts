@@ -2,17 +2,19 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FincaService } from '../../core/services/finca.service';
 import { Finca } from '../../core/models/finca.model';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
+import { TooltipDirective } from '../../shared/directives/tooltip.directive';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, TooltipDirective],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css'
 })
 export class CatalogComponent implements OnInit {
   private fincaService = inject(FincaService);
+  private router = inject(Router);
   fincas: Finca[] = [];
   categories = [
     { label: 'Cabañas', icon: 'assets/img/catalog/icon_1.png' },
@@ -30,5 +32,9 @@ export class CatalogComponent implements OnInit {
     this.fincaService.getFincas().subscribe(data => {
       this.fincas = data;
     });
+  }
+
+  goToFinca(fincaId: string): void {
+    this.router.navigate(['/catalog/details', fincaId]);
   }
 }

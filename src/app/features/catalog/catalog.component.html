@@ -3,38 +3,93 @@
         <div class="hero-content">
             <h1>Experimenta el alma del Eje Cafetero</h1>
             <p>Descubre fincas y paisajes inolvidables en el corazón de Colombia</p>
-            <div class="search-bar">
-                <input type="text" placeholder="¿A dónde quieres ir? Ej: Santagueda, Salento, Filandia...">
-                <button class="btn-search">Buscar</button>
-            </div>
+            <form class="search-bar" role="search" aria-label="Buscar destinos">
+                <label class="sr-only" for="catalog-search">Buscar destino</label>
+                <input
+                    id="catalog-search"
+                    type="search"
+                    inputmode="search"
+                    autocomplete="off"
+                    title="Buscar destino"
+                    [appTooltip]="'Buscar destino'"
+                    placeholder="¿A dónde quieres ir? Ej: Santagueda, Salento, Filandia..."
+                    aria-describedby="catalog-search-hint"
+                >
+                <span id="catalog-search-hint" class="sr-only">Escribe un destino y presiona buscar</span>
+                <button
+                    type="submit"
+                    class="btn-search"
+                    aria-label="Buscar"
+                    title="Buscar"
+                    [appTooltip]="'Buscar'"
+                >
+                    Buscar
+                </button>
+            </form>
         </div>
     </div>
 </div>
 
 <div class="categories-bar">
-    <div class="categories-container">
-        <div *ngFor="let category of categories" class="category-item">
-            <img [src]="category.icon" [alt]="category.label" class="category-icon">
-            <span class="category-label">{{ category.label }}</span>
-        </div>
-    </div>
+    <nav class="categories-container" aria-label="Categorías">
+        <button
+            *ngFor="let category of categories"
+            class="category-item"
+            type="button"
+            [attr.aria-label]="'Filtrar por ' + category.label"
+            [attr.title]="'Filtrar por ' + category.label"
+            [appTooltip]="'Filtrar por ' + category.label"
+        >
+            <img
+                [src]="category.icon"
+                [alt]="category.label"
+                class="category-icon"
+                [attr.title]="'Categoría: ' + category.label"
+            >
+            <span class="category-label" [attr.title]="'Categoría: ' + category.label">
+                {{ category.label }}
+            </span>
+        </button>
+    </nav>
 </div>
 
-<section class="catalog-container">
+<section class="catalog-container" aria-labelledby="catalog-title">
     <header class="catalog-header">
-        <h2>Fincas Destacadas</h2>
+        <h2 id="catalog-title">Fincas Destacadas</h2>
         <p>Los mejores lugares para descansar este fin de semana</p>
     </header>
 
-    <div class="finca-grid">
-        <div *ngFor="let finca of fincas" class="finca-card" [routerLink]="['/catalog/details', finca.id]">
+    <div class="finca-grid" role="list" aria-label="Listado de fincas destacadas">
+        <article
+            *ngFor="let finca of fincas"
+            class="finca-card"
+            role="listitem"
+            tabindex="0"
+            (click)="goToFinca(finca.id)"
+            (keydown.enter)="goToFinca(finca.id)"
+            (keydown.space)="goToFinca(finca.id)"
+            [attr.aria-label]="'Ver detalles de ' + finca.nombre + ' en ' + finca.ubicacion"
+            [attr.title]="'Ver detalles de ' + finca.nombre"
+            [appTooltip]="'Ver detalles de ' + finca.nombre"
+        >
             <div class="image-placeholder">
-                <img *ngIf="finca.imagenes && finca.imagenes.length > 0 && finca.imagenes[0]" [src]="finca.imagenes[0]"
-                    [alt]="finca.nombre" class="finca-img">
+                <img
+                    *ngIf="finca.imagenes && finca.imagenes.length > 0 && finca.imagenes[0]"
+                    [src]="finca.imagenes[0]"
+                    [alt]="finca.nombre"
+                    class="finca-img"
+                    [attr.title]="finca.nombre"
+                >
                 <span *ngIf="finca.superanfitrion" class="badge-superanfitrion">Superanfitrión</span>
-                <button class="btn-favorite">
-                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
-                        focusable="false"
+                <button
+                    type="button"
+                    class="btn-favorite"
+                    aria-label="Agregar a favoritos"
+                    title="Agregar a favoritos"
+                    [appTooltip]="'Agregar a favoritos'"
+                    (click)="$event.stopPropagation()"
+                >
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
                         style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: white; stroke-width: 2; overflow: visible;">
                         <path
                             d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z">
@@ -45,10 +100,9 @@
 
             <div class="card-content">
                 <div class="card-header-row">
-                    <h3>{{ finca.nombre }}</h3>
-                    <span class="rating">
-                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                            role="presentation" focusable="false"
+                    <h3 [attr.title]="finca.nombre">{{ finca.nombre }}</h3>
+                    <span class="rating" [attr.aria-label]="'Puntuación ' + finca.puntuacion">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
                             style="display: block; height: 12px; width: 12px; fill: currentColor;">
                             <path
                                 d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"
@@ -57,14 +111,14 @@
                         {{ finca.puntuacion }}
                     </span>
                 </div>
-                <p class="location">{{ finca.ubicacion }}</p>
-                <p class="details">{{ finca.servicios.join(' • ') }}</p>
+                <p class="location" [attr.title]="finca.ubicacion">{{ finca.ubicacion }}</p>
+                <p class="details" [attr.title]="finca.servicios.join(' • ')">{{ finca.servicios.join(' • ') }}</p>
 
                 <div class="card-price">
                     <span class="price">${{ finca.precioPorNoche | number:'1.0-0' }} COP</span> <span
                         class="price-suffix"> por noche</span>
                 </div>
             </div>
-        </div>
+        </article>
     </div>
 </section>
