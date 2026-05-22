@@ -2,11 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ExperienciaService } from '../../core/services/experiencia.service';
 import { Experiencia } from '../../core/models/experiencia.model';
+import { TooltipDirective } from '../../shared/directives/tooltip.directive';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TooltipDirective],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.css',
 })

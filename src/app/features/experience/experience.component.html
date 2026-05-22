@@ -6,8 +6,18 @@
         <p>Explora las mejores experiencias cafeteras, aventuras naturales y la cultura auténtica de nuestra región.</p>
         
         <div class="hero-actions">
-            <button class="btn-primary" routerLink="/catalog">Ver Catálogo</button>
-            <button class="btn-outline">
+            <button
+                class="btn-primary"
+                routerLink="/catalog"
+                title="Ir al catálogo"
+                [appTooltip]="'Ir al catálogo'"
+            >Ver Catálogo</button>
+            <button
+                class="btn-outline"
+                type="button"
+                title="Ver video"
+                [appTooltip]="'Ver video'"
+            >
                 <svg viewBox="0 0 24 24" class="play-icon" fill="currentColor">
                     <path d="M8 5.14v14l11-7-11-7z"/>
                 </svg>
@@ -22,7 +32,9 @@
         <div *ngFor="let cat of categories" 
              class="filter-item" 
              [class.active]="selectedCategory === cat.label"
-             (click)="selectCategory(cat.label)">
+             (click)="selectCategory(cat.label)"
+             [attr.title]="'Filtrar por ' + cat.label"
+             [appTooltip]="'Filtrar por ' + cat.label">
             <img [src]="cat.icon" [alt]="cat.label" class="filter-icon">
             <span>{{ cat.label }}</span>
         </div>
@@ -35,7 +47,11 @@
             <h2>Experiencias Destacadas</h2>
             <p>Curadas especialmente para tu visita al Eje Cafetero.</p>
         </div>
-        <a class="view-all-link">Ver todas <span>→</span></a>
+        <a
+            class="view-all-link"
+            title="Ver todas las experiencias"
+            [appTooltip]="'Ver todas las experiencias'"
+        >Ver todas <span>→</span></a>
     </div>
 
     <div class="featured-card">
@@ -72,7 +88,12 @@
                         <span class="ft-value">${{ featuredExperience.price | number:'1.0-0' }} COP</span>
                     </div>
                 </div>
-                <button class="btn-reserve">Reservar Ahora</button>
+                <button
+                    class="btn-reserve"
+                    type="button"
+                    title="Reservar experiencia destacada"
+                    [appTooltip]="'Reservar experiencia destacada'"
+                >Reservar Ahora</button>
             </div>
         </div>
     </div>
@@ -80,7 +101,12 @@
 
 <section class="experience-container">
     <div class="experience-grid">
-        <div *ngFor="let exp of filteredExperiencias" class="experience-card">
+        <div
+            *ngFor="let exp of filteredExperiencias"
+            class="experience-card"
+            [attr.title]="'Ver detalles de ' + exp.titulo"
+            [appTooltip]="'Ver detalles de ' + exp.titulo"
+        >
             <div class="exp-image-box">
                 <img *ngIf="exp.imagenes[0]" [src]="exp.imagenes[0]" [alt]="exp.titulo" class="exp-img">
                 <div *ngIf="!exp.imagenes[0]" class="exp-placeholder"></div>
@@ -93,7 +119,12 @@
                     {{ exp.distancia }}
                 </span>
                 
-                <button class="btn-grid-fav">
+                <button
+                    class="btn-grid-fav"
+                    type="button"
+                    title="Agregar a favoritos"
+                    [appTooltip]="'Agregar a favoritos'"
+                >
                     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: rgba(0, 0, 0, 0.3); height: 20px; width: 20px; stroke: white; stroke-width: 2; overflow: visible;"><path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"></path></svg>
                 </button>
             </div>
@@ -114,7 +145,11 @@
                     <div class="grid-price">
                         <span class="val">${{ exp.precio | number:'1.0-0' }}</span> <span class="suff">{{ exp.sufijo_precio }}</span>
                     </div>
-                    <a class="grid-link">Ver detalles</a>
+                    <a
+                        class="grid-link"
+                        title="Ver detalles"
+                        [appTooltip]="'Ver detalles'"
+                    >Ver detalles</a>
                 </div>
             </div>
         </div>
@@ -125,7 +160,12 @@
     </div>
 
     <div class="load-more-container" *ngIf="filteredExperiencias.length > 0">
-        <button class="btn-load-more">Cargar más experiencias</button>
+        <button
+            class="btn-load-more"
+            type="button"
+            title="Cargar más experiencias"
+            [appTooltip]="'Cargar más experiencias'"
+        >Cargar más experiencias</button>
     </div>
 </section>
 

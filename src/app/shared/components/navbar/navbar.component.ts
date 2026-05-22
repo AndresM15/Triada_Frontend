@@ -2,33 +2,73 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
+import { TooltipDirective } from '../../directives/tooltip.directive';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule, TooltipDirective],
   template: `
     <nav class="navbar">
-      <div class="logo" routerLink="/catalog">
-        <img src="/assets/img/logo.png" alt="Logo">
+      <div
+        class="logo"
+        routerLink="/catalog"
+        title="Ir al catálogo"
+        [appTooltip]="'Ir al catálogo'"
+      >
+        <img src="/assets/img/logo.png" alt="Logo Triada Cafetera" title="Logo Triada Cafetera">
         <span class="logo-text">Triada Cafetera</span>
       </div>
 
       <div class="nav-links">
-        <a routerLink="/catalog" routerLinkActive="active">Fincas</a>
-        <a routerLink="/experiencias" routerLinkActive="active">Experiencias</a>
-        <a routerLink="/nosotros" routerLinkActive="active">Nosotros</a>
+        <a
+          routerLink="/catalog"
+          routerLinkActive="active"
+          title="Ver fincas"
+          [appTooltip]="'Ver fincas'"
+        >Fincas</a>
+        <a
+          routerLink="/experiencias"
+          routerLinkActive="active"
+          title="Ver experiencias"
+          [appTooltip]="'Ver experiencias'"
+        >Experiencias</a>
+        <a
+          routerLink="/nosotros"
+          routerLinkActive="active"
+          title="Conoce sobre nosotros"
+          [appTooltip]="'Conoce sobre nosotros'"
+        >Nosotros</a>
       </div>
 
       <div class="auth-actions">
         <ng-container *ngIf="!authService.isLoggedIn(); else userMenu">
-          <button class="btn-login" routerLink="/auth/login">Iniciar Sesión</button>
-          <button class="btn-register" routerLink="/auth/register">Registrarse</button>
+          <button
+            class="btn-login"
+            routerLink="/auth/login"
+            title="Iniciar sesión"
+            [appTooltip]="'Iniciar sesión'"
+          >Iniciar Sesión</button>
+          <button
+            class="btn-register"
+            routerLink="/auth/register"
+            title="Crear cuenta"
+            [appTooltip]="'Crear cuenta'"
+          >Registrarse</button>
         </ng-container>
 
         <ng-template #userMenu>
-          <span class="user-name">{{ authService.currentUser()?.nombre }}</span>
-          <button (click)="authService.logout()" class="btn-logout">Salir</button>
+          <span
+            class="user-name"
+            title="Usuario autenticado"
+            [appTooltip]="'Usuario autenticado'"
+          >{{ authService.currentUser()?.nombre }}</span>
+          <button
+            (click)="authService.logout()"
+            class="btn-logout"
+            title="Cerrar sesión"
+            [appTooltip]="'Cerrar sesión'"
+          >Salir</button>
         </ng-template>
       </div>
     </nav>

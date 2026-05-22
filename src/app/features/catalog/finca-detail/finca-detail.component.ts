@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FincaService } from '../../../core/services/finca.service';
 import { Finca } from '../../../core/models/finca.model';
+import { TooltipDirective } from '../../../shared/directives/tooltip.directive';
 
 @Component({
   selector: 'app-finca-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, TooltipDirective],
   templateUrl: './finca-detail.component.html',
   styleUrl: './finca-detail.component.css'
 })
@@ -26,7 +27,6 @@ export class FincaDetailComponent implements OnInit {
     'assets/img/finca/finca_5.png'
   ];
 
-  // Specific mock data matching the requested UI design
   fincaDetails = {
     pricePerNight: 350000,
     rating: 4.92,

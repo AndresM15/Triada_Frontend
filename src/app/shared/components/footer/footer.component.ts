@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TooltipDirective } from '../../directives/tooltip.directive';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TooltipDirective],
   template: `
     <footer class="footer">
       <div class="footer-content">
-        <div class="footer-left" routerLink="/">
-          <img src="/assets/img/logo.png" alt="Logo" class="footer-logo">
+        <div
+          class="footer-left"
+          routerLink="/"
+          title="Ir al inicio"
+          [appTooltip]="'Ir al inicio'"
+        >
+          <img src="/assets/img/logo.png" alt="Logo Triada Cafetera" class="footer-logo" title="Logo Triada Cafetera">
           <span class="footer-brand">Triada Cafetera</span>
         </div>
         
@@ -18,9 +24,21 @@ import { RouterLink } from '@angular/router';
         </div>
         
         <div class="footer-right">
-          <a routerLink="/privacidad">Privacidad</a>
-          <a routerLink="/terminos">Términos</a>
-          <a routerLink="/contacto">Contacto</a>
+          <a
+            routerLink="/privacidad"
+            title="Ver política de privacidad"
+            [appTooltip]="'Ver política de privacidad'"
+          >Privacidad</a>
+          <a
+            routerLink="/terminos"
+            title="Ver términos y condiciones"
+            [appTooltip]="'Ver términos y condiciones'"
+          >Términos</a>
+          <a
+            routerLink="/contacto"
+            title="Ir a contacto"
+            [appTooltip]="'Ir a contacto'"
+          >Contacto</a>
         </div>
       </div>
     </footer>
